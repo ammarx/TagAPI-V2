@@ -16,7 +16,7 @@ namespace TagAPIx
     {
 
        static string versionnumber = null;
-       
+       static Boolean inhstatus = false;
 
         internal static Dictionary<string, string[]> versionData = new Dictionary<string, string[]>
         {
@@ -66,42 +66,98 @@ namespace TagAPIx
             }
         }
 
+
+        public static void isItinh(Boolean inhStatus)
+        {
+            try
+            {
+
+                inhstatus = inhStatus;
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("An error occurred: '{0}'", ex);
+
+            }
+  
+        }
+
         
         public static void main()
         {
             try
             {
-                string mcLocation = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/.minecraft/";
-
-                string fileName = mcLocation + @"\versions\" + versionnumber + @"\" + versionnumber + ".json";
-
-
-                if (File.Exists(fileName))
+                if (inhstatus == false)
                 {
-                    versionData = otherJsonNet.getVersionData(fileName);
+                    string mcLocation = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/.minecraft/";
+
+                    string fileName = mcLocation + @"\versions\" + versionnumber + @"\" + versionnumber + ".json";
+
+
+                    if (File.Exists(fileName))
+                    {
+                        versionData = otherJsonNet.getVersionData(fileName);
+                    }
+                    else
+                    {
+                        //Error;
+                    }
+
+                    string mcNatives = "-Djava.library.path=\"" + mcLocation + @"\versions\" + versionnumber + @"\" + versionnumber + "_TagCraftMC\"";
+                    string mcLibraries = "";
+                    foreach (string entry in versionData["libraries"])
+                    {
+                        mcLibraries = mcLibraries + "\"" + mcLocation + @"\libraries\" + entry + "\";";
+                    }
+                    string mcJar = "\"" + mcLocation + @"\versions\" + versionnumber + @"\" + versionnumber + ".jar\"";
+                    string mcClass = versionData["mainClass"][0];
+                    string mcArgs = versionData["minecraftArguments"][0];
+
+
+                    buildArguments = mcLibraries;
+
+                    string[] lines = { buildArguments };
+
+                    System.IO.File.WriteAllLines((Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/.minecraft/TagCraftMC Files/Arguments/Arguments.txt"), lines);
                 }
-                else
+
+
+
+                if (inhstatus == true)
                 {
-                    //Error;
+                    string mcLocation = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/.minecraft/";
+
+                    string fileName = mcLocation + @"\versions\" + versionnumber + @"\" + versionnumber + ".json";
+
+
+                    if (File.Exists(fileName))
+                    {
+                        versionData = otherJsonNet.getVersionData(fileName);
+                    }
+                    else
+                    {
+                        //Error;
+                    }
+
+                    string mcNatives = "-Djava.library.path=\"" + mcLocation + @"\versions\" + versionnumber + @"\" + versionnumber + "_TagCraftMC\"";
+                    string mcLibraries = "";
+                    foreach (string entry in versionData["libraries"])
+                    {
+                        mcLibraries = mcLibraries + "\"" + mcLocation + @"\libraries\" + entry + "\";";
+                    }
+                    string mcJar = "\"" + mcLocation + @"\versions\" + versionnumber + @"\" + versionnumber + ".jar\"";
+                    string mcClass = versionData["mainClass"][0];
+                    string mcArgs = versionData["minecraftArguments"][0];
+
+
+                    buildArguments = mcLibraries;
+
+                    string[] lines = { buildArguments };
+
+                    System.IO.File.WriteAllLines((Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/.minecraft/TagCraftMC Files/Arguments/Pre-Arguments.txt"), lines);
                 }
-
-                string mcNatives = "-Djava.library.path=\"" + mcLocation + @"\versions\" + versionnumber + @"\" + versionnumber + "_TagCraftMC\"";
-                string mcLibraries = ""; 
-                foreach (string entry in versionData["libraries"])
-                {
-                    mcLibraries = mcLibraries + "\"" + mcLocation + @"\libraries\" + entry + "\";";
-                }
-                string mcJar = "\"" + mcLocation + @"\versions\" + versionnumber + @"\" + versionnumber + ".jar\"";
-                string mcClass = versionData["mainClass"][0];
-                string mcArgs = versionData["minecraftArguments"][0];
-     
-      
-                buildArguments = mcLibraries;
-
-                string[] lines = { buildArguments };
-
-                System.IO.File.WriteAllLines((Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + "/.minecraft/TagCraftMC Files/Arguments/Arguments.txt"), lines);
-
+            
             }
             catch (Exception e)
             {

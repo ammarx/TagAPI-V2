@@ -8,3 +8,8 @@ C:\Users\User\Documents\Visual Studio 2013\Projects\TagAPIV2\TagAPI\bin\Debug\Ta
 C:\Users\User\Documents\Visual Studio 2013\Projects\TagAPIV2\TagAPI\obj\Debug\TagAPI.csprojResolveAssemblyReference.cache
 C:\Users\User\Documents\Visual Studio 2013\Projects\TagAPIV2\TagAPI\obj\Debug\TagAPI.dll
 C:\Users\User\Documents\Visual Studio 2013\Projects\TagAPIV2\TagAPI\obj\Debug\TagAPI.pdb
+C:\Users\User\Documents\GitHub\TagAPI-V2\TagAPIV2\TagAPI\bin\Debug\TagAPI.dll
+C:\Users\User\Documents\GitHub\TagAPI-V2\TagAPIV2\TagAPI\bin\Debug\TagAPI.pdb
+C:\Users\User\Documents\GitHub\TagAPI-V2\TagAPIV2\TagAPI\obj\Debug\TagAPI.csprojResolveAssemblyReference.cache
+C:\Users\User\Documents\GitHub\TagAPI-V2\TagAPIV2\TagAPI\obj\Debug\TagAPI.dll
+C:\Users\User\Documents\GitHub\TagAPI-V2\TagAPIV2\TagAPI\obj\Debug\TagAPI.pdb
